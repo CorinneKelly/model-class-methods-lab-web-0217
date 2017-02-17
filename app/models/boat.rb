@@ -32,9 +32,12 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-  	boat_array = []
   	joins(:classifications).group("boats.id").having("COUNT(*) == 3")
 
+  end
+
+  def self.longest_boat
+    order(length: :desc).limit(1).first
   end
 
 end
