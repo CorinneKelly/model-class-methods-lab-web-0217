@@ -14,11 +14,11 @@ class Captain < ActiveRecord::Base
 
   def self.talented_seamen
   	# new_table = self.
-  	sail_id = joins(:classifications).where(classifications: {name: "Sailboat"}).pluck(:id) 
-  	motor_id = joins(:classifications).where(classifications: {name: "Motorboat"}).pluck(:id)
-  	# binding.pry
-  	all_id = sail_id & motor_id
-  	where(id: all_id)
+  	joins(:classifications).where(classifications: {name: "Sailboat", "Motorboat"}).uniq 
+  	# motor_id = joins(:classifications).where(classifications: {name: "Motorboat"}).pluck(:id)
+  	# # binding.pry
+  	# all_id = sail_id & motor_id
+  	# where(id: all_id)
   end
 
   def self.non_sailors
